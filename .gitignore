@@ -1,0 +1,13 @@
+*.class
+*.iml
+pom.properties
+target/
+.project
+.classpath
+.settings
+.settings/
+.springBeans
+.idea
+build.xml
+build.properties.example
+datasource.properties

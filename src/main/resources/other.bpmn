@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="_HTjD0GZsEeeTjKnU-V5uAw" targetNamespace="http://camunda.org/schema/1.0/bpmn" exporter="Camunda Modeler" exporterVersion="1.8.2" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <bpmn2:process id="other" isExecutable="true">
+    <bpmn2:startEvent id="StartEvent_1">
+      <bpmn2:outgoing>SequenceFlow_1</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:sequenceFlow id="SequenceFlow_1" name="" sourceRef="StartEvent_1" targetRef="Task_1" />
+    <bpmn2:userTask id="Task_1" name="other_tarea1">
+      <bpmn2:extensionElements>
+        <camunda:taskListener class="com.roycer.cam.myTaskListener" event="create" />
+        <camunda:taskListener class="com.roycer.cam.myTaskListener" event="assignment" />
+        <camunda:taskListener class="com.roycer.cam.myTaskListener" event="complete" />
+        <camunda:taskListener class="com.roycer.cam.myTaskListener" event="delete" />
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>SequenceFlow_1</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_2</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="SequenceFlow_2" name="" sourceRef="Task_1" targetRef="EndEvent_1" />
+    <bpmn2:endEvent id="EndEvent_1">
+      <bpmn2:incoming>SequenceFlow_2</bpmn2:incoming>
+      <bpmn2:errorEventDefinition errorRef="Error_1yjsyfe" />
+    </bpmn2:endEvent>
+    <bpmn2:subProcess id="Task_1wqgqeb" triggeredByEvent="true">
+      <bpmn2:startEvent id="StartEvent_10bdxns">
+        <bpmn2:outgoing>SequenceFlow_0yit2i6</bpmn2:outgoing>
+        <bpmn2:errorEventDefinition errorRef="Error_1yjsyfe" />
+      </bpmn2:startEvent>
+      <bpmn2:sequenceFlow id="SequenceFlow_0yit2i6" sourceRef="StartEvent_10bdxns" targetRef="Task_1s4h48c" />
+      <bpmn2:endEvent id="EndEvent_0l3trsc">
+        <bpmn2:incoming>SequenceFlow_04po3zf</bpmn2:incoming>
+      </bpmn2:endEvent>
+      <bpmn2:sequenceFlow id="SequenceFlow_04po3zf" sourceRef="Task_1s4h48c" targetRef="EndEvent_0l3trsc" />
+      <bpmn2:serviceTask id="Task_1s4h48c" name="other_tarea2" camunda:class="com.roycer.cam.LoggerDelegate">
+        <bpmn2:incoming>SequenceFlow_0yit2i6</bpmn2:incoming>
+        <bpmn2:outgoing>SequenceFlow_04po3zf</bpmn2:outgoing>
+      </bpmn2:serviceTask>
+    </bpmn2:subProcess>
+  </bpmn2:process>
+  <bpmn2:error id="Error_1yjsyfe" name="ERROR-OCCURED" errorCode="ERROR-OCCURED" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="other">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="87" y="122" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_Task_2" bpmnElement="Task_1">
+        <dc:Bounds x="198" y="100" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_1" bpmnElement="SequenceFlow_1" sourceElement="_BPMNShape_StartEvent_2" targetElement="_BPMNShape_Task_2">
+        <di:waypoint xsi:type="dc:Point" x="123" y="140" />
+        <di:waypoint xsi:type="dc:Point" x="198" y="140" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="115.5" y="122" width="90" height="6" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_2" bpmnElement="SequenceFlow_2" sourceElement="_BPMNShape_Task_2" targetElement="EndEvent_1eykkq2_di">
+        <di:waypoint xsi:type="dc:Point" x="298" y="140" />
+        <di:waypoint xsi:type="dc:Point" x="386" y="140" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="297" y="122" width="90" height="6" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_1eykkq2_di" bpmnElement="EndEvent_1">
+        <dc:Bounds x="386" y="122" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="359" y="163" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="SubProcess_1t2g6x2_di" bpmnElement="Task_1wqgqeb" isExpanded="true">
+        <dc:Bounds x="42" y="218" width="379" height="196" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_0iol98a_di" bpmnElement="StartEvent_10bdxns">
+        <dc:Bounds x="71" y="297" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="88.88900000000001" y="336.778" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0yit2i6_di" bpmnElement="SequenceFlow_0yit2i6">
+        <di:waypoint xsi:type="dc:Point" x="107" y="315" />
+        <di:waypoint xsi:type="dc:Point" x="171" y="315" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="139" y="294" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_0l3trsc_di" bpmnElement="EndEvent_0l3trsc">
+        <dc:Bounds x="356.568" y="297" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="374.568" y="337" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_04po3zf_di" bpmnElement="SequenceFlow_04po3zf">
+        <di:waypoint xsi:type="dc:Point" x="271" y="315" />
+        <di:waypoint xsi:type="dc:Point" x="357" y="315" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="314" y="294" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_1kiwctk_di" bpmnElement="Task_1s4h48c">
+        <dc:Bounds x="171" y="275" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>
