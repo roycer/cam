@@ -44,15 +44,15 @@ public class Cargar extends HttpServlet {
 		//ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
 		Map<String, Object> variables = new HashMap<String, Object>();
 		variables.put("var","2");
-		//CamundaEngineLib a = new CamundaEngineLib();
-		//String as = a.processCreate("cam", "", "", "",variables);
-		ProcessEngine processEngine =  ProcessEngines.getDefaultProcessEngine();
+		CamundaEngineLib a = new CamundaEngineLib();
+		String as = a.processCreate("cam", "", "", "",variables);
+		//ProcessEngine processEngine =  ProcessEngines.getDefaultProcessEngine();
 		
 //		processEngine.getAuthorizationService()
-		ProcessEngineConfiguration processengineconfiguration = processEngine.getProcessEngineConfiguration();
-		System.out.println("mailServerHost: "+processengineconfiguration.getMailServerHost());
-		System.out.println("username: "+processengineconfiguration.getJdbcUsername());
-		System.out.println("password: "+processengineconfiguration.getJdbcPassword());
+//		ProcessEngineConfiguration processengineconfiguration = processEngine.getProcessEngineConfiguration();
+//		System.out.println("mailServerHost: "+processengineconfiguration.getMailServerHost());
+//		System.out.println("username: "+processengineconfiguration.getJdbcUsername());
+//		System.out.println("password: "+processengineconfiguration.getJdbcPassword());
 				
 		//processengineconfiguration.buildProcessEngine();
 		
