@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.camunda.bpm.engine.ProcessEngine;
 import org.camunda.bpm.engine.ProcessEngineConfiguration;
 import org.camunda.bpm.engine.ProcessEngines;
+import org.camunda.bpm.engine.repository.ProcessDefinition;
 import org.h2.util.New;
 
 import com.sig.camunda.bpm_lib.*;
@@ -39,14 +40,15 @@ public class Cargar extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	
+		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		//ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
 		Map<String, Object> variables = new HashMap<String, Object>();
 		variables.put("var","2");
-		CamundaEngineLib a = new CamundaEngineLib();
-		String as = a.processCreate("cam", "", "", "",variables);
-		//ProcessEngine processEngine =  ProcessEngines.getDefaultProcessEngine();
+		//CamundaEngineLib a = new CamundaEngineLib();
+		//String as = a.processCreate("cam", "", "", "",variables);
+		ProcessEngine processEngine =  ProcessEngines.getDefaultProcessEngine();
+		processEngine.getRuntimeService().startProcessInstanceByKey("cam",variables);
 		
 //		processEngine.getAuthorizationService()
 //		ProcessEngineConfiguration processengineconfiguration = processEngine.getProcessEngineConfiguration();
