@@ -122,9 +122,6 @@
     <bpmn:userTask id="ManualTask_1" name="ptarea5">
       <bpmn:extensionElements>
         <camunda:taskListener class="com.roycer.cam.myTaskListener" event="create">
-          <camunda:formField id="FormField_23idc22" />
-          <camunda:formField id="FormField_2uniqlu" />
-          <camunda:formField id="FormField_335mtjk" />
         </camunda:taskListener>
         <camunda:taskListener class="com.roycer.cam.myTaskListener" event="assignment" />
         <camunda:taskListener class="com.roycer.cam.myTaskListener" event="complete" />
