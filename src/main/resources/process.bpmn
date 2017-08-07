@@ -71,16 +71,6 @@
       <bpmn:sequenceFlow id="SequenceFlow_040tm2n" sourceRef="Task_0hf2p2r" targetRef="EndEvent_0jqqh8l" />
     </bpmn:subProcess>
     <bpmn:sequenceFlow id="SequenceFlow_1kkp972" sourceRef="SubProcess_1oaiotc" targetRef="EndEvent_17ubrwu" />
-    <bpmn:userTask id="Task_06ih7zy" name="ptarea2">
-      <bpmn:extensionElements>
-        <camunda:taskListener class="com.roycer.cam.myTaskListener" event="create" />
-        <camunda:taskListener class="com.roycer.cam.myTaskListener" event="assignment" />
-        <camunda:taskListener class="com.roycer.cam.myTaskListener" event="complete" />
-        <camunda:taskListener class="com.roycer.cam.myTaskListener" event="delete" />
-      </bpmn:extensionElements>
-      <bpmn:incoming>SequenceFlow_0hvpjji</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0afb809</bpmn:outgoing>
-    </bpmn:userTask>
     <bpmn:inclusiveGateway id="ExclusiveGateway_0glliyk">
       <bpmn:incoming>SequenceFlow_0f4td74</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0cqus9n</bpmn:outgoing>
@@ -193,6 +183,10 @@
     <bpmn:endEvent id="EndEvent_17ubrwu">
       <bpmn:incoming>SequenceFlow_1kkp972</bpmn:incoming>
     </bpmn:endEvent>
+    <bpmn:userTask id="Task_06ih7zy" name="ptarea2">
+      <bpmn:incoming>SequenceFlow_0hvpjji</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0afb809</bpmn:outgoing>
+    </bpmn:userTask>
   </bpmn:process>
   <bpmn:message id="Message_175v4m7" name="hola mundo" />
   <bpmn:message id="Message_1rwzonk" name="hola2" />
@@ -261,9 +255,6 @@
           <dc:Bounds x="1123" y="569" width="90" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="UserTask_0eytrwr_di" bpmnElement="Task_06ih7zy">
-        <dc:Bounds x="351" y="481" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="InclusiveGateway_0hff9j4_di" bpmnElement="ExclusiveGateway_0glliyk">
         <dc:Bounds x="248" y="328" width="50" height="50" />
         <bpmndi:BPMNLabel>
@@ -499,6 +490,9 @@
         <bpmndi:BPMNLabel>
           <dc:Bounds x="1293" y="613" width="0" height="12" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_1v0e3r8_di" bpmnElement="Task_06ih7zy">
+        <dc:Bounds x="351" y="481" width="100" height="80" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

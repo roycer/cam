@@ -16,6 +16,9 @@ import org.camunda.bpm.engine.runtime.EventSubscription;
 import org.camunda.bpm.engine.runtime.MessageCorrelationBuilder;
 import org.camunda.bpm.engine.runtime.MessageCorrelationResult;
 
+import com.sig.camunda.bpm_dto.MyEventSubscription;
+import com.sig.camunda.bpm_lib.CamundaEngine;
+
 /**
  * Servlet implementation class mensajes
  */
@@ -40,15 +43,29 @@ public class mensajes extends HttpServlet {
 		response.getWriter().append("processinstanceid: ").append(processinstanceid);
 		
 		ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
-		RuntimeService runtimeService = processEngine.getRuntimeService();
-		List <EventSubscription> eventSubscriptions = runtimeService.createEventSubscriptionQuery()
-				  .processInstanceId(processinstanceid).eventType("message").list();
+//		RuntimeService runtimeService = processEngine.getRuntimeService();
+//		List <EventSubscription> eventSubscriptions = runtimeService.createEventSubscriptionQuery()
+//				  .processInstanceId(processinstanceid).eventType("message").list();
+//		
+//		for(EventSubscription eventSubscription : eventSubscriptions){
+//			System.out.println(eventSubscription.getEventName());
+//			System.out.println(eventSubscription.getId());
+//			runtimeService.messageEventReceived(eventSubscription.getEventName(), eventSubscription.getExecutionId());
+//		}
 		
-		for(EventSubscription eventSubscription : eventSubscriptions){
-			System.out.println(eventSubscription.getEventName());
-			System.out.println(eventSubscription.getId());
-			runtimeService.messageEventReceived(eventSubscription.getEventName(), eventSubscription.getExecutionId());
+		CamundaEngine camEngine = new CamundaEngine();
+		List<MyEventSubscription>  evntos = camEngine.getEvents(processinstanceid);
+		
+		for(MyEventSubscription i : evntos){
+			System.out.println(i.getProcessInstanceID());
+			System.out.println(i.getEventName());
+			System.out.println(i.getActivityId());
+			System.out.println(i.getId());
+			//camEngine.fireEvent(i);
+			System.out.println("-");
 		}
+		
+		
 	}
 
 	/**
