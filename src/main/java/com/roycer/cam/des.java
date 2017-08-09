@@ -14,6 +14,7 @@ import org.camunda.bpm.engine.ProcessEngines;
 import org.camunda.bpm.engine.repository.ProcessDefinition;
 import org.camunda.bpm.engine.runtime.Execution;
 
+import com.sig.camunda.bpm_lib.CamundaAuthentication;
 import com.sig.camunda.bpm_lib.CamundaEngine;
 
 /**
@@ -36,24 +37,50 @@ public class des extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//String idTask = request.getParameter("idTask");
+//		String user = request.getParameter("user");
 		
-		ProcessEngine processEngine =  ProcessEngines.getDefaultProcessEngine();
+//		ProcessEngine processEngine =  ProcessEngines.getDefaultProcessEngine();
 		//ProcessDefinition processDefinition = processEngine.getRepositoryService().getProcessDefinition(idp);
 		//System.out.println(processDefinition.getDescription());
 		//CamundaEngine camEngine = new CamundaEngine();
 		//camEngine.taskComplete(idTask, "naruto", "na");
 		//camEngine.instanceSetVariable(idTask, "ok","ok");
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		List<ProcessDefinition> exs = processEngine.getRepositoryService().createProcessDefinitionQuery().list();
-		for(ProcessDefinition i : exs){
-			System.out.println("key: "+i.getKey());
-			System.out.println("name:"+i.getName());
-			System.out.println("description: "+i.getDescription());
-			System.out.println("resource name:"+i.getResourceName());
-			System.out.println("-----------");
-		}
+//		CamundaAuthentication camauth = new CamundaAuthentication();
+//		List<ProcessDefinition> exs = processEngine.getRepositoryService().createProcessDefinitionQuery().list();
+//		for(ProcessDefinition i : exs){
+//			
+//			if (camauth.isAuthorizationCreateProcessInstance(user, i.getKey())) {
+//				System.out.println("[autorizado]");
+//			}
+//			else
+//				System.out.println("[no autorizado]");
+//			
+//			System.out.println("key: "+i.getKey());
+//			System.out.println("name:"+i.getName());
+//			System.out.println("description: "+i.getDescription());
+//			System.out.println("resource name:"+i.getResourceName());
+//			System.out.println("-----------");
+//		}
+//		System.out.println("**************************");
 		
+//		String user = request.getParameter("user");
+//		String recurso = request.getParameter("recurso");
+//		
+		CamundaAuthentication camaut = new CamundaAuthentication();
+		//camaut.createUser("naruto12", "naruto", "uzumaki", "12", "naruto@gmail.com");
+		//camaut.userAuthorizationCreate(user, recurso);
+		
+		List<String> usuarios = camaut.getUsers();
+		for(String i : usuarios)
+			System.out.println(i);
+		
+		CamundaEngine cam = new CamundaEngine();
+		List<String> pros = cam.getProcessDefinitions();
+		System.out.println("----");
+		for(String i: pros){
+			System.out.println(i);
+		}
 	}
 
 	/**
